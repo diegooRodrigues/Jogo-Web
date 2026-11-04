@@ -1,14 +1,27 @@
+*
+{
+    box-sizing: border-box;
+}
+
+body
+{
+    background-color: black;
+}
+
 #tela
 {
     position: relative;
-    width: 100%;
+    max-width: 1200px;
     height: 800px;
+    margin: auto;
     background-color: rgba(0, 0, 0, 0.897);
+    border: yellow 1px solid;
 }
 
 #tempo
 {
     text-align: center;
+    color: yellow;
 }
 
 #nave
@@ -16,5 +29,6 @@
     position: absolute;
     transform: rotate(90deg);
     width: 100px;
-    top: 50%;
+    top: 400px;
+    left: 10px;
 }

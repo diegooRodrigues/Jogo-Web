@@ -8,8 +8,6 @@ var botaoStart = document.getElementById('botaoStart');
 // conta o tempo do jogo
 var tempoDeJogo = function ()
 {   
-    botaoStart.style.display = 'none';
-
     let tempoSeg = segundos.toString().padStart(2, '0');
     let tempoMin = minutos.toString().padStart(2, '0');
 
@@ -106,5 +104,48 @@ var movimentacaoJogador = function()
         nave.style.left = '1100px';
     }
 }
-// roda a movimentação
-setInterval(movimentacaoJogador, 16);
+
+// Obstáculos
+var asteroide = document.getElementById('asteroide');
+
+// define as posições iniciais do asteroide
+var posicaoAsteroidTop = -1000;
+var posicaoAsteroidLeft = 1200;
+asteroide.style.left = posicaoAsteroidLeft + 'px';
+asteroide.style.top = posicaoAsteroidTop + 'px';
+
+// movimento horizontal do asteroide
+var movimentoAsteroide = function()
+{
+    var velociadeAsteroide = 10;
+
+    posicaoAsteroidLeft -= velociadeAsteroide;
+    asteroide.style.left = posicaoAsteroidLeft + 'px';
+
+    if (posicaoAsteroidLeft <= -100)
+    {
+        posicaoAsteroidLeft = 1200;
+        aleatoriedadeAsteroide()
+    }
+}
+
+// define localização vertical do asteroide
+var aleatoriedadeAsteroide = function()
+{
+    posicaoAsteroidTop = Math.floor(Math.random() * 701);
+    asteroide.style.top = posicaoAsteroidTop + 'px';
+}
+
+
+// inicia o jogo
+var iniciarJogo = function()
+{
+    botaoStart.style.display = 'none';
+
+    tempoDeJogo();
+    setInterval(tempoDeJogo, 1000);
+
+    setInterval(movimentacaoJogador, 16);
+    aleatoriedadeAsteroide();
+    setInterval(movimentoAsteroide, 16);
+}

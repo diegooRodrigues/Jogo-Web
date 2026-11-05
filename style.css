@@ -1,6 +1,7 @@
 *
 {
     box-sizing: border-box;
+    margin: 0;
 }
 
 body
@@ -14,16 +15,37 @@ body
     max-width: 1200px;
     height: 800px;
     margin: auto;
+    margin-top: 15px;
     background-color: rgba(0, 0, 0, 0.897);
     border: yellow 1px solid;
+    border-radius: 5px;
+    overflow: hidden;
 }
 
 #tempo
 {
     text-align: center;
     color: yellow;
+    font-size: 16pt;
+    margin-top: 5px;
 }
 
+#botaoStart
+{
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: yellow 2px solid;
+    border-radius: 5px;
+    color: yellow;
+    font-size: 16pt;
+    background-color: transparent;
+    padding: 3px;
+    cursor: pointer;
+}
+
+/* Elementos do jogo */
 #nave
 {
     position: absolute;
@@ -31,4 +53,9 @@ body
     width: 100px;
     top: 400px;
     left: 10px;
+}
+
+#asteroide
+{
+    position: absolute;
 }

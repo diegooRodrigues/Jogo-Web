@@ -58,4 +58,32 @@ body
 #asteroide
 {
     position: absolute;
+    width: 100px;
 }
+
+#explosao
+{
+    position: absolute;
+    transform: translate(-50%, -50%);
+    visibility: hidden;
+}
+
+/* Ver o hitbox na prática */
+/* 
+#hitboxNave
+{
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background-color: rgba(255, 255, 0, 0.596);
+    pointer-events: none;
+}
+
+#hitboxAst
+{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    background-color: rgba(23, 158, 129, 0.603);
+    pointer-events: none;
+} */

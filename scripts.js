@@ -1,3 +1,8 @@
+// variáveis de controle de loop
+var loopTempo;
+var loopMovimentacaoJogador;
+var loopMovimentoAsteroide;
+
 // variáveis do tempo de jogo
 var segundos = 0;
 var minutos = 0;
@@ -21,7 +26,6 @@ var tempoDeJogo = function ()
 
     segundos++;
 }
-
 
 // movimentação do jogador
 var nave = document.getElementById('nave'); 
@@ -122,6 +126,8 @@ var movimentoAsteroide = function()
     posicaoAsteroidLeft -= velociadeAsteroide;
     asteroide.style.left = posicaoAsteroidLeft + 'px';
 
+    verificarColisao();
+
     if (posicaoAsteroidLeft <= -100)
     {
         posicaoAsteroidLeft = 1200;
@@ -136,6 +142,56 @@ var aleatoriedadeAsteroide = function()
     asteroide.style.top = posicaoAsteroidTop + 'px';
 }
 
+var verificarColisao = function()
+{
+    // hitbox da nava
+    let hitboxNaveEsquerda = posicaoNaveLeft + 20;
+    let hitboxNaveDireita = hitboxNaveEsquerda + 70;
+    let hitboxNaveTopo = posicaoNaveTop + 15;
+    let hitboxNaveBaixo = hitboxNaveTopo + 70;
+
+    // hitbox do asteroide
+    let hitboxAsteroideEsquerda = posicaoAsteroidLeft + 30;
+    let hitboxAsteroideTopo = posicaoAsteroidTop + 30;
+    let hitboxAsteroideDireita = hitboxAsteroideEsquerda + 40;
+    let hitboxAsteroideBaixo = hitboxAsteroideTopo + 40;
+
+    // para ver a hitbox funcionando na prática
+    // hitbox da nave
+    // let divNave = document.getElementById('hitboxNave');
+    // divNave.style.left = hitboxNaveEsquerda + 'px';
+    // divNave.style.top = hitboxNaveTopo + 'px';
+
+    // hitbox do asteroide
+    // let divAst = document.getElementById('hitboxAst');
+    // divAst.style.left = hitboxAsteroideEsquerda + 'px';
+    // divAst.style.top = hitboxAsteroideTopo + 'px';
+
+    // verifica se encostou
+    if (
+        hitboxNaveDireita > hitboxAsteroideEsquerda && 
+        hitboxNaveEsquerda < hitboxAsteroideDireita &&
+        hitboxNaveBaixo > hitboxAsteroideTopo && 
+        hitboxNaveTopo < hitboxAsteroideBaixo
+    )
+    {
+        // define local da explosão
+        let explosao = document.getElementById('explosao');
+        pararJogo();
+        explosao.style.left = hitboxNaveDireita + 'px';
+        explosao.style.top = posicaoNaveTop + 50 + 'px';
+        explosao.style.visibility = 'visible';
+
+        // tira visibilidade da nave e asteroide após 300 ms
+        setTimeout(() => {
+            nave.style.visibility = 'hidden';
+            asteroide.style.visibility = 'hidden';
+        }, 300)
+        // tira visibilidade da explosão após 1 seg
+        setTimeout(() => {explosao.style.visibility = 'hidden';}, 1000)
+    }
+}
+
 
 // inicia o jogo
 var iniciarJogo = function()
@@ -143,9 +199,17 @@ var iniciarJogo = function()
     botaoStart.style.display = 'none';
 
     tempoDeJogo();
-    setInterval(tempoDeJogo, 1000);
+    loopTempo = setInterval(tempoDeJogo, 1000);
 
-    setInterval(movimentacaoJogador, 16);
+    loopMovimentacaoJogador = setInterval(movimentacaoJogador, 16);
     aleatoriedadeAsteroide();
-    setInterval(movimentoAsteroide, 16);
+    loopMovimentoAsteroide = setInterval(movimentoAsteroide, 16);
+}
+
+// para o jogo
+var pararJogo = function()
+{
+    clearInterval(loopTempo);
+    clearInterval(loopMovimentacaoJogador);
+    clearInterval(loopMovimentoAsteroide);
 }

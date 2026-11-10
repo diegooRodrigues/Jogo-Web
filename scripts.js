@@ -196,6 +196,13 @@ var verificarColisao = function()
 // inicia o jogo
 var iniciarJogo = function()
 {
+    botaoReiniciar.style.visibility = 'hidden';
+    nave.style.visibility = 'visible';
+    asteroide.style.visibility = 'visible';
+    posicaoAsteroidLeft = 1200;
+    posicaoNaveTop = 400;
+    posicaoNaveLeft = 10;
+
     botaoStart.style.display = 'none';
 
     tempoDeJogo();
@@ -207,9 +214,14 @@ var iniciarJogo = function()
 }
 
 // para o jogo
+var botaoReiniciar = document.getElementById('botaoReiniciar');
+
 var pararJogo = function()
 {
     clearInterval(loopTempo);
+    segundos = 0;
+    minutos = 0;
     clearInterval(loopMovimentacaoJogador);
     clearInterval(loopMovimentoAsteroide);
+    botaoReiniciar.style.visibility = 'visible';
 }

@@ -45,6 +45,22 @@ body
     cursor: pointer;
 }
 
+#botaoReiniciar
+{
+    visibility: hidden;
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: yellow 2px solid;
+    border-radius: 5px;
+    color: yellow;
+    font-size: 16pt;
+    background-color: transparent;
+    padding: 3px;
+    cursor: pointer;
+}
+
 /* Elementos do jogo */
 #nave
 {
